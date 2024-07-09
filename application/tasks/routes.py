@@ -41,7 +41,7 @@ def update_task(task_id):
     db.session.commit()
     return jsonify({
         "message": "Task updated successfully"
-    }), 204
+    })
 
 @tasks_blueprint.route("/tasks/<int:task_id>", methods=["DELETE"])
 def delete_task(task_id):
