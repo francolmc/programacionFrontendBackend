@@ -19,6 +19,31 @@ def get_task_by_id(task_id):
         "completed": task.completed
     })
 
+@tasks_blueprint.route("/tasks/search", methods=["GET"])
+def search_tasks():
+    search_text = request.args.get("q")
+    if not search_text:
+        return jsonify({"message": "Debes proporcionar un texto de búsqueda"}), 400
+
+    tasks = Task.query.filter(
+        (Task.title.ilike(f"%{search_text}%")) | (Task.description.ilike(f"%{search_text}%"))
+    ).all()
+
+    if not tasks:
+        return jsonify({"message": "No tasks matched the search were found"}), 404
+
+    task_data = [
+        {
+            "id": task.id,
+            "title": task.title,
+            "description": task.description,
+            "completed": task.completed,
+        }
+        for task in tasks
+    ]
+    return jsonify(task_data)
+
+
 @tasks_blueprint.route("/tasks", methods=["POST"])
 def create_task():
     data = request.get_json()
