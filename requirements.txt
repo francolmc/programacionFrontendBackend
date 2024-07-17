@@ -4,3 +4,4 @@ Flask-SQLAlchemy
 python-dotenv
 flask-migrate
 gunicorn
+flask-cors
