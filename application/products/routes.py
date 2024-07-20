@@ -9,7 +9,7 @@ products_blueprint = Blueprint("products", __name__, url_prefix="/api")
 @cross_origin()
 def get_products():
     products = Products.query.all()
-    return jsonify([{ "id": product.id, 'product_name': product.prpduct_name, 'price': product.price, 'stock': product.stock } for product in products])
+    return jsonify([{ "id": product.id, 'product_name': product.product_name, 'price': product.price, 'stock': product.stock } for product in products])
 
 @products_blueprint.route("/products/<int:product_id>", methods=["GET"])
 @cross_origin()
