@@ -2,6 +2,7 @@ from flask import Flask
 from application.extensions import db, migrate
 from application.tasks.routes import tasks_blueprint
 from application.contacts.routes import contacts_blueprint
+from application.products.routes import products_blueprint
 from flask_cors import CORS
 
 def create_app():
@@ -12,4 +13,5 @@ def create_app():
     migrate.init_app(app, db)
     app.register_blueprint(tasks_blueprint)
     app.register_blueprint(contacts_blueprint)
+    app.register_blueprint(products_blueprint)
     return app
