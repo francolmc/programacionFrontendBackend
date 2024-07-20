@@ -17,9 +17,9 @@ def get_contact_by_id(contact_id):
     contact = Contact.query.get_or_404(contact_id)
     return jsonify({
         "id": contact.id,
-        "title": contact.title,
-        "description": contact.description,
-        "completed": contact.completed
+        "first_name": contact.first_name,
+        "last_name": contact.last_name,
+        "email": contact.email
     })
 
 @contacts_blueprint.route("/contacts/search", methods=["GET"])
